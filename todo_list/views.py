@@ -17,6 +17,13 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy("tasks")
+class CustomLogoutView(LogoutView):
+    template_name = "todo_list/login.html"
+    fields = "__all__"
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy("tasks")
     
 class TaskList(ListView):
     model = Task
