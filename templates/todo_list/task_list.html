@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>My Todo list</h1>
+    <a href="{% url 'task-create' %}">Add Task</a>
+    <table>
+        <tr>
+            <th>Item</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{task.title}}</td>
+            <td><a href="{% url 'task' task.id %}">View</a></td>
+            <td><a href="{% url 'task-update' task.id %}">edit</a></td>
+        </tr>
+        {% empty %}
+        <h3>Nothing there mate...</h3>
+        {% endfor %}
+    </table>
+    <style>
+        *{
+            margin: 10px;
+        }
+    </style>
+</body>
+</html>
