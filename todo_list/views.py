@@ -33,8 +33,8 @@ class TaskList(LoginRequiredMixin, ListView):
     context_object_name = "tasks"
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
         context["tasks"] = context["tasks"].filter(user=self.request.user)
+        context["count"] = context["tasks"].filter(complete=False).count()
         return context
 
 
@@ -46,13 +46,16 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = "__all__"
+    fields = ["title","description","complete"]
     success_url = reverse_lazy("tasks")
+
+    def form_valid(self, form):
+        return super(TaskCreate,self).form_valid(form)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = "__all__"
+    fields = ["title", "description", "complete"]
     success_url = reverse_lazy("tasks")
 
 
