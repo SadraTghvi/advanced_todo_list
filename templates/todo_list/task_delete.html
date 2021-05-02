@@ -1,11 +1,18 @@
 {% extends 'todo_list/main.html' %}
-
 {% block content %}
-    <a href="{% url 'tasks' %}">Go Home</a>
-    <form method="POST" action="">
+
+<div class="header-bar">
+    <a href="{% url 'tasks' %}">&#8592;Go Back</a>
+</div>
+
+<div class="card-body">
+    <form method="POST">
         {% csrf_token %}
-        <p>U Sure About That?</p>
-        <p>U are Goin To Delete This Shit: <b>{{object}}</b></p>
-        <input value="Delete" type="submit">
+        <p>Are your sure you want to delete this task? "{{task}}"</p>
+        <input class="button" type="submit" value="Delete" />
     </form>
+</div>
+
+
+
 {% endblock content %}
