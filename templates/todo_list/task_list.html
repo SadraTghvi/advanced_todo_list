@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main Page</title>
-</head>
-<body>
+{% extends 'todo_list/main.html' %}
+{% block content %}
     {% if request.user.is_authenticated %}
-    <p> {{request.user}} </p>
+    <p>Hello {{request.user | title}} </p>
     <a href="{% url 'logout' %}">Logout</a>
     {% else %}
     <a href="{% url 'login' %}">Login</a>
@@ -29,7 +24,6 @@
         {% for task in tasks %}
         <tr>
             <td>{{task.title}}</td>
-            <td><a href="{% url 'task' task.id %}">View</a></td>
             <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
             <td><a href="{% url 'task-delete' task.id%}">Delete</a></td>
         </tr>
@@ -37,10 +31,4 @@
         <h3>Nothing there mate...</h3>
         {% endfor %}
     </table>
-    <style>
-        *{
-            margin: 10px;
-        }
-    </style>
-</body>
-</html>
+{% endblock content %}

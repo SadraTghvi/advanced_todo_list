@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Register Page</title>
-</head>
-
-<body>
+{% extends 'todo_list/main.html' %}
+{% block content %}
+    
     <form action="" method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Login">
     </form>
     <p>Have An Acc? <a href="{% url 'login' %}">Login</a></p>
-</body>
-
-</html>
+    {% endblock content %}
